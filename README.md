@@ -1,6 +1,5 @@
 ### 📘 `README.md`
 
-```markdown
 # 🧠 Coppelia: The Cognitive Forge
 
 Coppelia is a **modular autonomous system** designed to recursively **generate**, **evaluate**, and **evolve** LangChain-compatible tools through structured, agent-driven reasoning. It embodies a self-refining cognitive engine capable of identifying capability gaps, building tools to fill them, and iteratively improving their effectiveness with minimal human intervention.
