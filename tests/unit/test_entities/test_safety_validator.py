@@ -47,6 +47,11 @@ class TestSafetyValidator:
         ]
 
         for proposal in dangerous_proposals:
+            # Debug: Check if pattern is detected
+            violations = safety_validator._check_forbidden_patterns(proposal)
+            print(f"Proposal: {proposal}")
+            print(f"Violations detected: {violations}")
+
             assessment = safety_validator.evaluate(proposal)
 
             assert assessment.score == 0.0, f"Should veto dangerous proposal: {proposal}"
@@ -54,8 +59,8 @@ class TestSafetyValidator:
             assert assessment.confidence == 1.0
             assert "Automatic veto triggered" in assessment.reasoning
 
-            # Verify LLM was NOT called for forbidden patterns
-            mock_llm_client.generate_response.assert_not_called()
+        # Verify LLM was NOT called for any forbidden patterns
+        assert mock_llm_client.generate_response.call_count == 0, "LLM should not be called for forbidden patterns"
 
     def test_llm_based_evaluation(self, safety_validator, mock_llm_client):
         """Test LLM-based evaluation for safe proposals"""
