@@ -1,113 +1,52 @@
-### 📘 `README.md`
+# Coppelia MVP
 
-# 🧠 Coppelia: The Cognitive Forge
+Multi-Entity Consensus AI System that prevents hallucination cascades through biological-inspired voting mechanisms.
 
-Coppelia is a **modular autonomous system** designed to recursively **generate**, **evaluate**, and **evolve** LangChain-compatible tools through structured, agent-driven reasoning. It embodies a self-refining cognitive engine capable of identifying capability gaps, building tools to fill them, and iteratively improving their effectiveness with minimal human intervention.
+## Quick Start
 
----
+1. **Setup Environment:**
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   pip install -r requirements.txt
+   ```
 
-## 🏗️ Project Structure
+2. **Configure API Key:**
+   ```bash
+   cp .env.example .env
+   # Edit .env and add your OpenAI API key
+   ```
+
+3. **Run Tests:**
+   ```bash
+   python -m pytest tests/ -v
+   ```
+
+## Architecture
+
+- **Safety Validator**: Has veto power, ensures safe operations
+- **Logic Checker**: Validates correctness and integration
+- **Efficiency Monitor**: Assesses performance and resource usage
+
+## Consensus Formula
 
 ```
+Final Score = (Safety × 0.5) + (Logic × 0.35) + (Efficiency × 0.15)
+```
 
-coppelia/
-├── core/                  # Core logic: tool classes, agents, orchestrator
-├── memory/                # Tool storage (JSON)
-├── prompts/               # Prompt templates for Builder, Tester, Fixer
-├── docs/                  # Logs and analysis of test results
-└── scaffold\_coppelia.py   # Scaffolding script to bootstrap the architecture
+## Development
 
-````
+Install development dependencies:
+```bash
+pip install -e ".[dev]"
+```
 
----
+Run code formatting:
+```bash
+black src/ tests/
+```
 
-## 🚀 System Overview
-
-### Architecture Phases:
-
-1. **Project Foundation & Architecture**  
-   Tool structure, registry, evaluator, orchestrator.
-
-2. **Agentic Tool-Building Pipeline**  
-   Builder → Tester → Fixer → Evaluator loop with prompt templating.
-
-3. **Tool Evolution & Multiplicity**  
-   Mutation tracking, versioning, and ensemble-based selection.
-
-4. **Finalization Sweep**  
-   Codebase review, documentation integrity, and quality enforcement.
-
----
-
-## 🧩 Core Components
-
-| Component         | Description |
-|------------------|-------------|
-| `Tool`           | Encapsulates functional code, metadata, and test cases. |
-| `ToolRegistry`   | Handles persistent storage and retrieval of tools. |
-| `evaluate_tool()`| Runs simulated evaluations on tools with test case logs. |
-| `runner.py`      | Coordinates full pipeline execution autonomously. |
-| `*_agent.py`     | Specialized LLM agents (Builder, Tester, Fixer, Ensemble). |
-
----
-
-## 🧪 Test Protocol
-
-All testing logs and results are stored in:  
-📄 `docs/Test_Result_Analysis.md`
-
-| Metric          | Purpose                                  |
-|-----------------|-------------------------------------------|
-| Pass %          | Proportion of test cases passed           |
-| Coverage %      | Proportion of features evaluated          |
-| Issues Detected | Bug reports, failures, or misalignments   |
-| Fixes Applied   | Notes on resolutions applied              |
-
----
-
-## 💼 Usage
-
-1. **Setup Environment**
-   ```bash
-   pip install -r requirements.txt
-````
-
-2. **Initialize Project Structure**
-
-   ```bash
-   python scaffold_coppelia.py
-   ```
-
-3. **Run Coppelia**
-
-   ```bash
-   python core/runner.py
-   ```
-
-> ⚠️ All execution flows follow a strict Phase → Task → Step hierarchy with embedded internal verifications.
-
----
-
-## 📜 License
-
-This project is licensed under the MIT License.
-See [LICENSE](LICENSE) for more information.
-
----
-
-## 👤 Authors & Acknowledgments
-
-Coppelia is designed by autonomous LLM systems guided by modular cognitive architecture.
-Built for recursive tool innovation and self-evolving intelligence.
-
----
-
-## 🧭 Roadmap
-
-* [ ] Phase 1: Architecture & Orchestration
-* [ ] Phase 2: Builder, Tester, Fixer Agents
-* [ ] Phase 3: Tool Mutation & Ensemble Evaluation
-* [ ] Phase 4: Final QA & Audit
-* [ ] Phase 5: LangGraph Deployment (Future milestone)
-
----
+Type checking:
+```bash
+mypy src/
+```
